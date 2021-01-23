@@ -1,9 +1,10 @@
 import React from 'react'
-
+import Header from '../../components/Header/Header'
 function Notes () {
   return (
     <div>
-            Your text to Speech Notes
+      <Header />
+      <h1>This is the Notes page</h1>
     </div>
   )
 }
