@@ -9,8 +9,8 @@ function Home () {
       <div className='description'>
         <Typography variant='h2' component='h3'>Lazywriter</Typography>
 
-        <div className='content' gutterBottom>
-          <Typography variant='h6' component='body2'>
+        <div className='content'>
+          <Typography variant='h6' component='body2' gutterBottom>
           Lazywriter is a simple speech to text application that lets you move around the apps pages using only your voice.
           </Typography>
         </div>
