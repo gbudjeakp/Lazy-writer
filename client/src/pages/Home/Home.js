@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography, Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import './style.css'
 
 function Home () {
@@ -15,8 +16,9 @@ function Home () {
         </div>
 
         <div className='btnseperator'>
-          <Button>Sigup</Button>
-          <Button>Login</Button>
+          <Button component={Link} to='/signup' variant='contained' color='primary' style={{ backgroundColor: '#E1D329', marginRight: '10px' }}>Signup</Button>
+
+          <Button component={Link} to='/login' variant='contained' color='primary'>Login</Button>
         </div>
 
       </div>

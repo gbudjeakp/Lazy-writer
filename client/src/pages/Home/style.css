@@ -21,6 +21,7 @@ body{
 }
 .btnseperator{
     display: flex;
+    justify-content: space-evenly;
 }
 .custom-shape-divider-bottom-1611428761 {
     position: absolute;
