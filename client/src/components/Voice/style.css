@@ -1,8 +1,25 @@
 
 .voice-control {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
+  
+}
+
+.note-container{
+    background-color: black;
+    width: 50%;
+    margin-left: 22%;
+    margin-top: 20px;
+}
+
+.note{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    .note-container{
+      width: 100%;
+      margin-left: 0;
+    }
 }

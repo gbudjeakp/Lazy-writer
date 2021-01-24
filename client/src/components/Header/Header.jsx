@@ -20,8 +20,7 @@ function Header () {
 
             <Link to='/news'>News</Link>
 
-            <Link to='/dashboard'>Create Note</Link>
-
+            <Link to='/dashboard'>Dashboard</Link>
           </div>
           <AuthOptions />
         </Toolbar>
