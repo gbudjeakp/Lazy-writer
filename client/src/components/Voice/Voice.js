@@ -1,27 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header'
 import { Button, Paper } from '@material-ui/core'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import SaveIcon from '@material-ui/icons/Save'
-import MicOffIcon from '@material-ui/icons/MicOff'
 import Notes from '../../pages/Notes/Notes'
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import './style.css'
 
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition
+const mic = new SpeechRecognition()
+
+mic.continuous = true
+mic.interimResults = true
+mic.lang = 'en-US'
+
 function Voice () {
-  const { transcript } = useSpeechRecognition()
+  const [isListening, setIsListening] = useState(false)
+  const [note, setNote] = useState('')
   const [savedNotes, setSavedNotes] = useState([])
 
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return null
+  useEffect(() => {
+    handleListen()
+  }, [isListening])
+
+  const handleListen = () => {
+    if (isListening) {
+      mic.start()
+      mic.onend = () => {
+        console.log('continue..')
+        mic.start()
+      }
+    } else {
+      mic.stop()
+      mic.onend = () => {
+        console.log('Stopped Mic on Click')
+      }
+    }
+    mic.onstart = () => {
+      console.log('Mics on')
+    }
+
+    mic.onresult = event => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('')
+      console.log(transcript)
+      setNote(transcript)
+      mic.onerror = event => {
+      }
+    }
   }
 
-  function startListening () {
-    SpeechRecognition.startListening({ continuous: true })
-  }
-
-  function stopListening () {
-    SpeechRecognition.abortListening()
+  const handleSaveNote = () => {
+    setSavedNotes([...savedNotes, note])
+    setNote('')
   }
 
   return (
@@ -32,38 +65,34 @@ function Voice () {
           variant='contained'
           color='secondary'
           startIcon={<KeyboardVoiceIcon />}
-          onClick={startListening}
+          onClick={() => setIsListening(prevState => !prevState)}
         >
         Talk
         </Button>
 
         <Button
           variant='contained'
-          color='secondary'
-          startIcon={<MicOffIcon />}
-          onClick={stopListening}
-        >
-        Micoff
-        </Button>
-
-        <Button
-          variant='contained'
           color='primary'
           startIcon={<SaveIcon />}
-          // onClick={handleSave}
+          onClick={handleSaveNote} disabled={!note}
         >
         Save
         </Button>
       </div>
       <Paper elevation={3} className='note-container'>
+        {isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
         <p className='note'>
-          {transcript}
+          {note}
         </p>
       </Paper>
+      <div className='savednotescontainer'>
+        {savedNotes.map((note, index) => {
+          return (
+            <Notes note={note} key={index} />
+          )
+        })}
+      </div>
 
-      {savedNotes.map((savedNote, index) => (
-        <Notes key={index} savedNote={savedNote} setSavedNotes={setSavedNotes} />
-      ))}
     </div>
   )
 }

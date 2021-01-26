@@ -1,10 +1,12 @@
 import React from 'react'
-import Header from '../../components/Header/Header'
-function Notes () {
+import { Paper } from '@material-ui/core'
+function Notes ({ note }) {
+  console.log(note)
   return (
     <div>
-      <Header />
-      <h1>This is the Notes page</h1>
+      <Paper elevation={3} className='note-container'>
+        <p className='note'>{note}</p>
+      </Paper>
     </div>
   )
 }
