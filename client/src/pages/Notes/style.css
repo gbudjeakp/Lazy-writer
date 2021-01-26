@@ -1,15 +1,5 @@
-
-.note-container{
-    background-color: black;
-    width: 50%;
-    margin-left: 22%;
-    margin-top: 20px;
+/* For Notes CSS */
+.note-container2{
+ padding-top: 120px;
 }
 
-
-@media only screen and (max-width: 600px) {
-    .note-container{
-      width: 100%;
-      margin-left: 0;
-    }
-}

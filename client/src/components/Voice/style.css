@@ -1,26 +1,37 @@
-
+/* For dashboard css */
 .note-container{
-    background-color: black;
-    width: 50%;
-    margin-left: 22%;
-    margin-top: 20px;
-}
-
-.voice-control{
+    width: 72%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     float: right;
 }
 
-.savednotescontainer{
-    height: 100%;
-    width: 160px; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0; 
-    left: 0;
-    background-color: #111; /* Black */
-    padding-top: 20px;
+.voice-control Button{
+    display: flex;
+    z-index: -2;
 }
 
+
+.savednotescontainer{
+    height: 100%;
+    width: 400px; 
+    position: fixed; 
+    z-index: -1; 
+    top: 0; 
+    left: 0;
+    background-color: #3f51b5;
+    padding-top: 20px;
+    padding-right: 20px;
+    overflow-y: scroll;
+}
+
+.insidesavednotescontainer{
+    padding-top: 100px;
+    padding-left: 40px;
+}
 .note{
     padding-left: 40px;
     padding-right: 40px;

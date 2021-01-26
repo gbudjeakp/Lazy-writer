@@ -45,7 +45,6 @@ function Voice () {
         .map(result => result[0])
         .map(result => result.transcript)
         .join('')
-      console.log(transcript)
       setNote(transcript)
       mic.onerror = event => {
       }
@@ -60,32 +59,35 @@ function Voice () {
   return (
     <div>
       <Header />
-      <div className='voice-control'>
-        <Button
-          variant='contained'
-          color='secondary'
-          startIcon={<KeyboardVoiceIcon />}
-          onClick={() => setIsListening(prevState => !prevState)}
-        >
-        Talk
-        </Button>
+      <div className='note-container'>
 
-        <Button
-          variant='contained'
-          color='primary'
-          startIcon={<SaveIcon />}
-          onClick={handleSaveNote} disabled={!note}
-        >
+        <div classname='voice-control'>
+          <Button
+            variant='contained'
+            color='secondary'
+            startIcon={<KeyboardVoiceIcon />}
+            onClick={() => setIsListening(prevState => !prevState)}
+          >
+        Talk
+          </Button>
+
+          <Button
+            variant='contained'
+            color='primary'
+            startIcon={<SaveIcon />}
+            onClick={handleSaveNote} disabled={!note}
+          >
         Save
-        </Button>
-      </div>
-      <Paper elevation={3} className='note-container'>
-        {isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
+          </Button>
+        </div>
+
+        {isListening ? <span>🎙️</span> : <span>🛑</span>}
         <p className='note'>
           {note}
         </p>
-      </Paper>
+      </div>
       <div className='savednotescontainer'>
+        <h1 className='insidesavednotescontainer'>Saved Notes</h1>
         {savedNotes.map((note, index) => {
           return (
             <Notes note={note} key={index} />
