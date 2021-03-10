@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header'
-import { Button, Paper } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import SaveIcon from '@material-ui/icons/Save'
 import Notes from '../../pages/Notes/Notes'
